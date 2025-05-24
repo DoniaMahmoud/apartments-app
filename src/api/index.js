@@ -6,6 +6,9 @@ const axios = axiosBase.create({
 });
 
 export const getAllApartments = () => {
-  // TO BE CHANGED
-  return axios.get('/companies');
+  return axios.get('/apartments');
+};
+
+export const addApartment = apartment => {
+  return axios.post('/apartments', apartment);
 };

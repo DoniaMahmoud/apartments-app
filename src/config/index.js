@@ -1,2 +1,1 @@
-// TO BE CHANGED
-export const API_URL = 'https://fake-json-api.mock.beeceptor.com';
+export const API_URL = process.env.NEXT_PUBLIC_API_URL;

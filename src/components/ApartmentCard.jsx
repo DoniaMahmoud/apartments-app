@@ -28,42 +28,62 @@ const styles = {
 
 const ApartmentCard = props => {
   const { apartment } = props;
+  const { name, imageUrl, location, size, bedrooms, bathrooms, price, delivery } = apartment || {};
+
+  const placeholder = '/images/placeholder.jpg';
+
   return (
     <Box sx={styles.container}>
       <Box sx={styles.imageBox}>
-        <Image src={apartment.imageUrl} alt={apartment.name} fill style={{ objectFit: 'cover' }} />
+        <Image
+          src={imageUrl || placeholder}
+          alt={name}
+          priority
+          fill
+          style={{
+            objectFit: 'cover',
+            width: '100%',
+            height: '100%',
+          }}
+        />
+        <Box position="absolute" textAlign="right" color="white" bottom={10} right={10}>
+          <Typography fontSize="16px" lineHeight={0.7} m={0} p={0}>
+            Delivery in
+          </Typography>
+          <Typography fontSize="18px" fontWeight={700}>
+            {delivery}
+          </Typography>
+        </Box>
       </Box>
       <Box p="15px">
-        <Typography color="#212427">{apartment.name}</Typography>
-        <Typography color="#656565">{apartment.location}</Typography>
+        <Typography color="#212427">{name}</Typography>
+        <Typography color="#656565">{location}</Typography>
         <Stack direction="row" alignItems="center" gap={7} mt={1}>
           <Stack direction="row" alignItems="center" gap={2}>
             <Stack direction="row" alignItems="center">
               <Typography>
-                <sup>{apartment.bedrooms}</sup>
+                <sup>{bedrooms}</sup>
               </Typography>
               <BedroomIcon />
             </Stack>
             <Stack direction="row" alignItems="center">
               <Typography>
-                <sup>{apartment.bathrooms}</sup>
+                <sup>{bathrooms}</sup>
               </Typography>
               <BathroomIcon />
             </Stack>
           </Stack>
           <Stack direction="row" alignItems="center" gap="5px">
             <MeterIcon />
-            <Typography>{apartment.size}</Typography>
+            <Typography>{size}</Typography>
           </Stack>
         </Stack>
 
         <Typography mt="40px" fontSize="18px" fontWeight="800">
-          {apartment.price}
+          {price}
         </Typography>
-        {/* <Typography>{apartment.delivery}</Typography> */}
       </Box>
     </Box>
   );
 };
-
 export default ApartmentCard;
