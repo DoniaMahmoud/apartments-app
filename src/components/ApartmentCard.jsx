@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Box, Stack, Typography } from '@mui/material';
 import Image from 'next/image';
 import React from 'react';
@@ -15,6 +16,8 @@ const styles = {
       cursor: 'pointer',
       border: '1px solid rgb(51, 123, 196)',
     },
+    textDecoration: 'none',
+    color: 'inherit',
   },
   imageBox: {
     width: '100%',
@@ -28,12 +31,13 @@ const styles = {
 
 const ApartmentCard = props => {
   const { apartment } = props;
-  const { name, imageUrl, location, size, bedrooms, bathrooms, price, delivery } = apartment || {};
+  const { id, name, imageUrl, location, size, bedrooms, bathrooms, price, delivery } =
+    apartment || {};
 
   const placeholder = '/images/placeholder.jpg';
 
   return (
-    <Box sx={styles.container}>
+    <Box component={Link} href={`/apartment/${id}`} sx={styles.container}>
       <Box sx={styles.imageBox}>
         <Image
           src={imageUrl || placeholder}
